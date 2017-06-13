@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <title>San Project</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="">
+        {% load staticfiles %}
+        <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" />
+
+        <!-- Bootstrap core CSS -->
+        <link rel='stylesheet' href="{% static 'css/bootstrap.min.css' %}" type='text/css' />
+        <link rel='stylesheet' href="{% static 'css/request.css' %}" type='text/css' />
+
+</head>
+
+<body class="body" style="background-color:#f6f6f6">
+        <div>
+        {% block content %}
+        {{ form.errors }}
+        {% if request_error %}
+           <p class="error"> Sorry, Please provide correct details</p>
+        {% endif %}
+        {% endblock %}
+        </div>
+<div class="container">
+<form class="form-request" role= "form" action= "{% url 'request' %}" method="post">{% csrf_token %}
+    <h3 class="form-request-heading">San Project</h3>
+    <input type="text" class="form-mobile" name="mobileno" placeholder="MobileNo" pattern="04[0-9]{8}"required autofocus>
+    <input type="text" class="form-control" name="message" placeholder="Message" required>
+  <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+</form>
+</div>
+
+</body>
+</html>
+
